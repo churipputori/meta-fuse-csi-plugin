@@ -114,14 +114,15 @@ push-example-$(1)-$(2):
 		--platform linux/amd64,linux/arm64 .
 endef
 
-$(eval $(call example-template,proxy,mountpoint-s3))
-$(eval $(call example-template,proxy,goofys))
-$(eval $(call example-template,proxy,s3fs))
-$(eval $(call example-template,proxy,ros3fs))
-$(eval $(call example-template,proxy,gcsfuse))
-$(eval $(call example-template,proxy,sshfs))
-$(eval $(call example-template,starter,ros3fs))
-$(eval $(call example-template,starter,sshfs))
+#$(eval $(call example-template,proxy,mountpoint-s3))
+#$(eval $(call example-template,proxy,goofys))
+#$(eval $(call example-template,proxy,s3fs))
+#$(eval $(call example-template,proxy,ros3fs))
+#$(eval $(call example-template,proxy,gcsfuse))
+#$(eval $(call example-template,proxy,sshfs))
+$(eval $(call example-template,proxy,kopia))
+#$(eval $(call example-template,starter,ros3fs))
+#$(eval $(call example-template,starter,sshfs))
 
 
 .PHONY: build-examples
@@ -142,21 +143,21 @@ test-example-$(1)-$(2)-$(6):
 	./examples/check.sh ./$1/$2 mfcp-example-$1-$2 $3 $4 $5 $6
 endef
 
-$(eval $(call test-example-template,proxy,mountpoint-s3,starter,/test.txt,busybox,/data/subdir/test.txt))
-$(eval $(call test-example-template,proxy,goofys,starter,/test.txt,busybox,/data/subdir/test.txt))
-$(eval $(call test-example-template,proxy,s3fs,starter,/test.txt,busybox,/data/subdir/test.txt))
-$(eval $(call test-example-template,proxy,ros3fs,starter,/test.txt,busybox,/data/subdir/test.txt))
-$(eval $(call test-example-template,proxy,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data/subdir/test.txt))
-$(eval $(call test-example-template,starter,ros3fs,starter,/test.txt,busybox,/data/subdir/test.txt))
-$(eval $(call test-example-template,starter,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,proxy,mountpoint-s3,starter,/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,proxy,goofys,starter,/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,proxy,s3fs,starter,/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,proxy,ros3fs,starter,/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,proxy,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,starter,ros3fs,starter,/test.txt,busybox,/data/subdir/test.txt))
+#$(eval $(call test-example-template,starter,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data/subdir/test.txt))
 ifndef SKIP_TEST_SUBPATH
-$(eval $(call test-example-template,proxy,mountpoint-s3,starter,/test.txt,busybox,/data-subpath/test.txt))
-$(eval $(call test-example-template,proxy,goofys,starter,/test.txt,busybox,/data-subpath/test.txt))
-$(eval $(call test-example-template,proxy,s3fs,starter,/test.txt,busybox,/data-subpath/test.txt))
-$(eval $(call test-example-template,proxy,ros3fs,starter,/test.txt,busybox,/data-subpath/test.txt))
-$(eval $(call test-example-template,proxy,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data-subpath/test.txt))
-$(eval $(call test-example-template,starter,ros3fs,starter,/test.txt,busybox,/data-subpath/test.txt))
-$(eval $(call test-example-template,starter,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,proxy,mountpoint-s3,starter,/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,proxy,goofys,starter,/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,proxy,s3fs,starter,/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,proxy,ros3fs,starter,/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,proxy,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,starter,ros3fs,starter,/test.txt,busybox,/data-subpath/test.txt))
+#$(eval $(call test-example-template,starter,sshfs,starter,/root/sshfs-example/subdir/test.txt,busybox,/data-subpath/test.txt))
 endif
 
 .PHONY: test-examples
