@@ -25,8 +25,6 @@ import (
 	starter "github.com/pfnet-research/meta-fuse-csi-plugin/pkg/fuse_starter"
 	"github.com/pfnet-research/meta-fuse-csi-plugin/pkg/util"
 	flag "github.com/spf13/pflag"
-
-	"k8s.io/klog/v2"
 )
 
 var (
@@ -88,8 +86,9 @@ func main() {
 	// fd-passing socket between fusermount3-proxy and csi-driver is passed as env var
 	fdPassingSocketPath := os.Getenv(ENV_FUSERMOUNT3PROXY_FDPASSING_SOCKPATH)
 	if fdPassingSocketPath == "" {
-		klog.Errorf("environment variable %q is not specified.", ENV_FUSERMOUNT3PROXY_FDPASSING_SOCKPATH)
-		os.Exit(1)
+		klog.Warningf("environment variable %q is not specified.", ENV_FUSERMOUNT3PROXY_FDPASSING_SOCKPATH)
+		klog.Warningf("Using default of '/fusermount3-proxy/fuse-csi-ephemeral.sock'")
+		fdPassingSocketPath = "/fusermount3-proxy/fuse-csi-ephemeral.sock"
 	}
 	klog.Infof("fd-passing socket path is %q", fdPassingSocketPath)
 
