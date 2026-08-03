@@ -8,6 +8,11 @@ on:
 jobs:
   publish-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     env:
       STAGINGVERSION: ${{ github.ref_name }}
       PUBLISH_IMAGE: true
