@@ -25,6 +25,8 @@ import (
 	starter "github.com/pfnet-research/meta-fuse-csi-plugin/pkg/fuse_starter"
 	"github.com/pfnet-research/meta-fuse-csi-plugin/pkg/util"
 	flag "github.com/spf13/pflag"
+
+	"k8s.io/klog/v2"
 )
 
 var (
